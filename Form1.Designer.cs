@@ -45,8 +45,8 @@
             this.btnRolar = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblLegenda = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtOutput = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.imgDados = new System.Windows.Forms.ImageList(this.components);
@@ -67,6 +67,7 @@
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // pbDado1
             // 
@@ -205,6 +206,7 @@
             this.btnExit.TabIndex = 13;
             this.btnExit.Text = "Sair";
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // groupBox1
             // 
@@ -214,17 +216,6 @@
             this.groupBox1.Size = new System.Drawing.Size(329, 100);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.txtOutput);
-            this.groupBox2.Location = new System.Drawing.Point(428, 374);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(379, 100);
-            this.groupBox2.TabIndex = 15;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
             // 
             // lblLegenda
             // 
@@ -235,6 +226,15 @@
             this.lblLegenda.TabIndex = 0;
             this.lblLegenda.Text = "5 of a kind = $4 Full House = $2\r\n4 of a kind = $3 High Straight = $3\r\n3 of a kin" +
     "d = $1 Low Straight = $3\r\n";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.txtOutput);
+            this.groupBox2.Location = new System.Drawing.Point(428, 374);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(379, 100);
+            this.groupBox2.TabIndex = 15;
+            this.groupBox2.TabStop = false;
             // 
             // txtOutput
             // 

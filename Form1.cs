@@ -151,6 +151,39 @@ namespace DicePoker
             }
         }
 
+        private void FimDoJogo()
+        {
+            //variavel para resposta ao jogador
+            DialogResult resposta = new DialogResult();
+
+            //limpar as mensagens de estado do jogo
+            txtOutput.Text = "";
+
+            //prompt alerta para avisar o jogador
+            string mensagem = "Não tem créditos.\nGostaria de jogar outra vez?";
+
+            resposta = MessageBox.Show(mensagem, "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            //se o jogador clica em Sim deve-se criar um jogo novo
+            if (resposta == DialogResult.Yes)
+            {
+                //redefinir a conta do jogador
+                creditos = 20;
+
+                //mostrar a imagem branco nas picturebox
+                pbDado1.Image = imgDados.Images[0];
+                pbDado2.Image = imgDados.Images[0];
+                pbDado3.Image = imgDados.Images[0];
+                pbDado4.Image = imgDados.Images[0];
+                pbDado5.Image = imgDados.Images[0];
+            }
+            else
+            {
+                //o jogador não quer jogar mais
+                Application.Exit();
+            }
+        }
+
         private int contador;   //variavel contador
         private int dado1;      //dado com a face 1
         private int dado2;      //dado com a face 2
@@ -173,7 +206,25 @@ namespace DicePoker
         }
         private void checkBox6_CheckedChanged(object sender, EventArgs e)
         {
-
+            //se o jogador seleciona Manter tudo
+            if (chkDados.Checked == true)
+            {
+                chkDado1.Checked = true;
+                chkDado2.Checked = true;
+                chkDado3.Checked = true;
+                chkDado4.Checked = true;
+                chkDado5.Checked = true;
+                btnRolar.Text = "Manter tudo";
+            }
+            else
+            {
+                chkDado1.Checked = false;
+                chkDado2.Checked = false;
+                chkDado3.Checked = false;
+                chkDado4.Checked = false;
+                chkDado5.Checked = false;
+                btnRolar.Text = "Rolar os Dados";
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -347,6 +398,11 @@ namespace DicePoker
                     VerificarResultadoJogada();
                 }
             }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
