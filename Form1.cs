@@ -32,6 +32,124 @@ namespace DicePoker
 
         //armazena o numero de jogadas de dados
         private int nrJogadas;
+        private void LimparCheckbox()
+        {
+            //ocultar e desativar as checkboxes
+            chkDado1.Visible = false;
+            chkDado1.Checked = false;
+            chkDado2.Visible = false;
+            chkDado2.Checked = false;
+            chkDado3.Visible = false;
+            chkDado3.Checked = false;
+            chkDado4.Visible = false;
+            chkDado4.Checked = false;
+            chkDado5.Visible = false;
+            chkDado5.Checked = false;
+
+            chkDados.Visible = false;
+            chkDados.Checked = false;
+        }
+
+        private void VerificarResultadoJogada()
+        {
+            //array para manter a contagem do número em cada mão
+            int[] dadosArray = new int[6];
+
+            //variavel para controlar a execução do loop
+            int i = 1;
+
+            //iterar seis vezes para manter a contagem do total
+            //de 1s, 2s, 3s, 4s, 5s e 6s que foram rolados
+            for (i = 1; i < 7; i++) 
+            {
+                if (dado1 == 1) dadosArray[i] += 1;
+                if (dado2 == 1) dadosArray[i] += 1;
+                if (dado3 == 1) dadosArray[i] += 1;
+                if (dado4 == 1) dadosArray[i] += 1;
+                if (dado5 == 1) dadosArray[i] += 1;
+            }
+            //iterar seis vezes para contar as mãos vencedoras
+            for (i = 1; i < 7; i++)
+            {
+                //ver se o jogador tem 5 do mesmo tipo
+                if (dadosArray[i] == 5)
+                {
+                    creditos += 4;
+                    txtOutput.Text = "GANHOU! 5 of a kind.\nGanhou 4 créditos.";
+                }
+
+                //ver se o jogador tem 4 do mesmo tipo
+                if (dadosArray[i] == 4)
+                {
+                    creditos += 3;
+                    txtOutput.Text = "GANHOU! 4 of a kind.\nGanhou 3 créditos.";
+                }
+
+                //ver se o jogador tem 3 o mesmo tipo ou Full House (3+2)
+                if (dadosArray[i] == 3)
+                {
+                    //tem 3 do mesmo tipo
+                    int j;
+                    bool fullHouse = false;
+
+                    //verificar se tem 2 do mesmo tipo
+                    for (j=1; j < 7; j++)
+                    {
+                        if (dadosArray[j] == 2)
+                        {
+                            fullHouse = true;
+                            creditos += 2;
+                            txtOutput.Text = "GANHOU! Full House.\nGanhou 2 créditos.";
+                            return;
+                        }
+                    }
+                    if (fullHouse == false)
+                    {
+                        creditos += 1;
+                        txtOutput.Text = "GANHOU! 3 of a kind.\nGanhou 1 crédito.";
+                        return;
+                    }
+                }
+
+                //iterar os dados 2 a 6 à procura de um High Straiht
+                //cada uma das posições só pode conter o valor de 1
+                for (i = 2; i < 7; i++)
+                {
+                    if (dadosArray[i] != 1) return;
+                    else 
+                    { 
+                        //quando terminar
+                        if (i == 6) 
+                        {
+                            creditos += 3;
+                            txtOutput.Text = "GANHOU! High Straiht.\nGanhou 3 créditos.";
+                            return;
+                        }
+                    }
+                }
+
+                //iterar os dados 1 a 5 à procura de um Low Straiht
+                //cada uma das posições só pode conter o valor de 1
+                for (i=1; i < 5; i++)
+                {
+                    if (dadosArray[i] != 1) return;
+                    else
+                    {
+                        //quando terminar
+                        if (i == 5)
+                        {
+                            creditos += 3;
+                            txtOutput.Text = "GANHOU! Low Straiht.\nGanhou 3 créditos.";
+                            return;
+                        }
+                    }
+                }
+
+                //atualizar o preço da jogada
+                creditos -= 2;
+                txtOutput.Text = "SORRY! Perdeu esta mão e 2 créditos.";
+            }
+        }
 
         private int contador;   //variavel contador
         private int dado1;      //dado com a face 1
@@ -204,6 +322,30 @@ namespace DicePoker
             {
                 contador = 0;
                 timer1.Enabled = false;
+
+                if (nrJogadas == 1)
+                {
+                    //alterar o texto do botão
+                    btnRolar.Text = "Rolar outra vez os Dados";
+
+                    //exibir o checkbox de cada dado
+                    chkDado1.Visible = true;
+                    chkDado2.Visible = true;
+                    chkDado3.Visible = true;
+                    chkDado4.Visible = true;
+                    chkDado5.Visible = true;
+                    chkDados.Visible = true;
+                }
+
+                if (nrJogadas == 2)
+                {
+                    //preparar uma nova jogada
+                    btnRolar.Text = "Rolar os Dados";
+                    LimparCheckbox();
+
+                    //verificar o resultado da jogada
+                    VerificarResultadoJogada();
+                }
             }
         }
     }
