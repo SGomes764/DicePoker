@@ -1,4 +1,6 @@
-﻿namespace DicePoker
+﻿using System;
+
+namespace DicePoker
 {
     partial class Form1
     {
@@ -248,7 +250,6 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // imgDados
@@ -299,6 +300,11 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

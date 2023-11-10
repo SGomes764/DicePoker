@@ -19,22 +19,28 @@ namespace DicePoker
 
         // definição das variaveis a usar na aplicação
         //controla o tempo de duração da rolagem de dados
+
         private const int cRolarTempo = 5;
         
         //armazena a mensagem da barra de titulo
+
         private const string cTituloBarra = "Dice Poker";
 
         //controlar a exibição de controlos checkBox
+
         private bool cListaDados = false;
 
         //total de creditos na conta do jogador
+
         private int creditos = 20;
 
         //armazena o numero de jogadas de dados
+
         private int nrJogadas;
         private void LimparCheckbox()
         {
             //ocultar e desativar as checkboxes
+
             chkDado1.Visible = false;
             chkDado1.Checked = false;
             chkDado2.Visible = false;
@@ -53,13 +59,14 @@ namespace DicePoker
         private void VerificarResultadoJogada()
         {
             //array para manter a contagem do número em cada mão
+
             int[] dadosArray = new int[6];
 
             //variavel para controlar a execução do loop
+
             int i = 1;
 
-            //iterar seis vezes para manter a contagem do total
-            //de 1s, 2s, 3s, 4s, 5s e 6s que foram rolados
+            //iterar seis vezes para manter a contagem do total de 1s, 2s, 3s, 4s, 5s e 6s que foram rolados
             for (i = 1; i < 7; i++) 
             {
                 if (dado1 == 1) dadosArray[i] += 1;
@@ -69,6 +76,7 @@ namespace DicePoker
                 if (dado5 == 1) dadosArray[i] += 1;
             }
             //iterar seis vezes para contar as mãos vencedoras
+
             for (i = 1; i < 7; i++)
             {
                 //ver se o jogador tem 5 do mesmo tipo
@@ -185,12 +193,12 @@ namespace DicePoker
         }
 
         private int contador;   //variavel contador
-        private int dado1;      //dado com a face 1
-        private int dado2;      //dado com a face 2
-        private int dado3;      //dado com a face 3
-        private int dado4;      //dado com a face 4
-        private int dado5;      //dado com a face 5
-        private int dado6;      //dado com a face 6
+        private int dado1;      //dado número 1
+        private int dado2;      //dado número 2
+        private int dado3;      //dado número 3
+        private int dado4;      //dado número 4
+        private int dado5;      //dado número 5
+        /*private int dado6;      //dado com a face 6 //*/
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -297,6 +305,7 @@ namespace DicePoker
                         if (x == 4) pbDado1.Image = imgDados.Images[4];
                         if (x == 5) pbDado1.Image = imgDados.Images[5];
                         if (x == 6) pbDado1.Image = imgDados.Images[6];
+                        dado1 = x;
                     }
                     break;
 
@@ -310,6 +319,7 @@ namespace DicePoker
                         if (x == 4) pbDado1.Image = imgDados.Images[4];
                         if (x == 5) pbDado1.Image = imgDados.Images[5];
                         if (x == 6) pbDado1.Image = imgDados.Images[6];
+                        dado2 = x;
                     }
                     break;
                 
@@ -323,6 +333,7 @@ namespace DicePoker
                         if (x == 4) pbDado1.Image = imgDados.Images[4];
                         if (x == 5) pbDado1.Image = imgDados.Images[5];
                         if (x == 6) pbDado1.Image = imgDados.Images[6];
+                        dado3 = x;
                     }
                     break;
 
@@ -336,6 +347,7 @@ namespace DicePoker
                         if (x == 4) pbDado1.Image = imgDados.Images[4];
                         if (x == 5) pbDado1.Image = imgDados.Images[5];
                         if (x == 6) pbDado1.Image = imgDados.Images[6];
+                        dado4 = x;
                     }
                     break;
                 
@@ -349,6 +361,7 @@ namespace DicePoker
                         if (x == 4) pbDado1.Image = imgDados.Images[4];
                         if (x == 5) pbDado1.Image = imgDados.Images[5];
                         if (x == 6) pbDado1.Image = imgDados.Images[6];
+                        dado5 = x;
                     }
                     break;
             }
